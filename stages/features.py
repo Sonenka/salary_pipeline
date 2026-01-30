@@ -138,7 +138,7 @@ class SimpleEncoder(PipelineNode):
         df.loc[~df["City"].isin({"MSK", "SPB"}), "City"] = "Other"
         city_dummies = pd.get_dummies(df["City"], prefix="City")
         df = pd.concat([df, city_dummies], axis=1)
-        df = df.drop(columns=["Город"])
+        df = df.drop(columns=["Город", "City"])
 
         df["Занятость"] = (
             df["Занятость"]

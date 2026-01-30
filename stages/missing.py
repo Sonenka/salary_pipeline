@@ -19,8 +19,6 @@ class MissingHandler(PipelineNode):
           pd.DataFrame - DataFrame с заполненными пропущенными значениями.
         '''
 
-        df = df.copy().drop_duplicates()
-
         for col in df.select_dtypes(include="number"):
             df.loc[:, col] = df[col].fillna(df[col].median())
 
