@@ -1,27 +1,27 @@
+import re
+from typing import Optional
 import pandas as pd
 from core.chain import PipelineNode
-from typing import Optional, Dict, List
-import re
 from config import ROLE_KEYWORDS
 
 class SimpleEncoder(PipelineNode):
-    '''Класс для преобразования и кодирования категориальных признаков в числовые c one-hot encoding.'''
+    """Класс для преобразования и кодирования категориальных признаков в числовые c one-hot encoding."""
 
     def __init__(self):
-        '''Инициализирует объект SimpleEncoder.'''
+        """Инициализировать объект SimpleEncoder."""
         super().__init__()
         self.verbose = False
 
-    def parse_gender(self, text: object) -> Optional[int]:
-        '''
-        Извлечение пола из текстовой строки.
+    def parse_gender(self, text: str | None) -> Optional[int]:
+        """
+        Извлечь пола из текстовой строки.
         
         Аргументы:
-          text : object - текстовая строка с информацией о поле.
+          text: object - текстовая строка с информацией о поле.
             
         Возвращает:
           Optional[int] - 1 для мужского пола, 0 для женского, None если пол не удалось определить.
-        '''
+        """
 
         t = text.lower()
         if "муж" in t or "male" in t:
@@ -30,32 +30,32 @@ class SimpleEncoder(PipelineNode):
             return 0
         return None
 
-    def parse_age(self, text: object) -> Optional[float]:
-        '''
-        Извлечение возраст из текстовой строки.
+    def parse_age(self, text: object | None) -> Optional[float]:
+        """
+        Извлечь возраст из текстовой строки.
         
         Аргументы: 
-          text : object - текстовая строка с информацией о возрасте.
+          text: object - текстовая строка с информацией о возрасте.
             
         Возвращает: 
           Optional[float] - возраст в годах или None, если возраст не удалось определить.
-        '''
+        """
 
         m = re.search(r"(\d{1,3})(?:[.,]\d+)?\s*(?:лет|год|года|years?)", text.lower())
         if m:
             return float(m.group(1))
         return None
     
-    def detect_role_group(self, title: object) -> str:
-        '''
-        Определяет группу должности на основе ключевых слов в названии.
+    def detect_role_group(self, title: object | None) -> str:
+        """
+        Определить группу должности на основе ключевых слов в названии.
         
         Аргументы:
-          title : object - название должности.
+          title: object - название должности.
             
         Возвращает:
           str - группа должности (dev, sys, mgr, analyst, support, marketing, engineer, other).
-        '''
+        """
 
         if not isinstance(title, str):
             return "other"
@@ -65,16 +65,16 @@ class SimpleEncoder(PipelineNode):
                 return bucket
         return "other"
     
-    def parse_experience_years(self, text: object) -> Optional[float]:
-        '''
-        Извлекает опыт работы из текстовой строки.
+    def parse_experience_years(self, text: object | None) -> Optional[float]:
+        """
+        Извлечь опыт работы из текстовой строки.
         
         Аргументы:
           text : object - текстовая строка с информацией об опыте работы.
             
         Возвращает:
           Optional[float] - опыт работы в годах (включая месяцы как десятичную часть).
-        '''
+        """
         
         text_lower = text.lower()
         
@@ -99,15 +99,15 @@ class SimpleEncoder(PipelineNode):
         return None
 
     def process(self, df: pd.DataFrame) -> pd.DataFrame:
-        '''
-        Основной метод для преобразования данных.
+        """
+        Преобразовать данные.
         
         Аргументы:
           df : pd.DataFrame - исходный DataFrame с сырыми данными.
             
         Возвращает:
         pd.DataFrame - DataFrame с преобразованными и закодированными признаками.
-        '''
+        """
 
         df = df.copy()
 

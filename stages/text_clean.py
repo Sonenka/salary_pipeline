@@ -3,21 +3,21 @@ import pandas as pd
 from core.chain import PipelineNode
 
 class TextNormalizer(PipelineNode):
-    '''Класс для нормализации текстовых данных.'''
+    """Класс для нормализации текстовых данных."""
 
     def process(self, df: pd.DataFrame) -> pd.DataFrame:
-        '''
-        Очищает текстовые данные в DataFrame.
+        """
+        Очистить текстовые данные в DataFrame.
         
         Аргументы:
           df : pd.DataFrame - DataFrame с текстовыми данными.
             
         Возвращает:
           pd.DataFrame - DataFrame с очищенными текстовыми данными.
-        '''
+        """
         
         def clean(val):
-            '''
+            """
             Вспомогательная функция для очистки текста.
             
             Аргументы:
@@ -25,7 +25,7 @@ class TextNormalizer(PipelineNode):
                 
             Возвращает:
               str - очищенная текстовая строка.
-            '''
+            """
             if not isinstance(val, str):
                 return val
             val = val.replace("\ufeff", "").replace("\xa0", " ")

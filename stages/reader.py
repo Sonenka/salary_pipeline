@@ -1,24 +1,25 @@
 from pathlib import Path
+from typing import Any
 import pandas as pd
 from core.chain import PipelineNode
 
 class CSVLoader(PipelineNode):
-    '''Класс для загрузки данных из CSV файла.'''
+    """Класс для загрузки данных из CSV файла."""
 
     def __init__(self, path: Path) -> None:
-        '''
-        Инициализирует объект CSVLoader.
+        """
+        Инициализировать объект CSVLoader.
         
         Аргументы:
           path : Path - путь к CSV файлу.
-        '''
+        """
 
         super().__init__()
         self.path = path
 
-    def process(self, frame):
-        '''
-        Загружает данные из CSV файла.
+    def process(self, frame: Any) -> pd.DataFrame:
+        """
+        Загрузить данные из CSV файла.
         
         Аргументы:
           frame : любое - игнорируется, требуется для совместимости с PipelineNode.
@@ -28,7 +29,7 @@ class CSVLoader(PipelineNode):
             
         Исключения:
           FileNotFoundError - если указанный файл не существует.
-        '''
+        """
 
         if not self.path.exists():
             raise FileNotFoundError(self.path)

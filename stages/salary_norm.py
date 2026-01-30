@@ -3,26 +3,23 @@ from core.chain import PipelineNode
 from config import RATES
 
 class SalaryNormalizer(PipelineNode):
-    '''
+    """
     Класс для нормализации зарплат в рублях.
-    
-    Извлекает числовое значение и валюту из строки зарплаты,
-    затем конвертирует все значения в рубли по установленным курсам.
-    '''
+    """
 
     def __init__(self, column: str):
-        '''
+        """
         Инициализирует объект SalaryNormalizer.
         
         Аргументы:
           column : str - название столбца с данными о зарплате.
-        '''
+        """
 
         super().__init__()
         self.column = column
 
     def process(self, df: pd.DataFrame) -> pd.DataFrame:
-        '''
+        """
         Нормализует зарплаты, приводя их к рублевому эквиваленту.
         
         Аргументы:
@@ -30,7 +27,7 @@ class SalaryNormalizer(PipelineNode):
             
         Возвращает:
         pd.DataFrame - DataFrame с нормализованными зарплатами в рублях.
-        '''
+        """
 
         values = df[self.column].astype(str)
 
