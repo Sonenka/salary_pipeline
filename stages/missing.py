@@ -13,10 +13,10 @@ class MissingHandler(PipelineNode):
         Обработать пропущенные значения в DataFrame.
         
         Аргументы:
-          df : pd.DataFrame - DataFrame с возможными пропущенными значениями.
+            df : pd.DataFrame - DataFrame с возможными пропущенными значениями.
             
         Возвращает:
-          pd.DataFrame - DataFrame с заполненными пропущенными значениями.
+            pd.DataFrame - DataFrame с заполненными пропущенными значениями.
         """
 
         for col in df.select_dtypes(include="number"):

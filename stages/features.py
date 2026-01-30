@@ -17,10 +17,10 @@ class SimpleEncoder(PipelineNode):
         Извлечь пола из текстовой строки.
         
         Аргументы:
-          text: object - текстовая строка с информацией о поле.
+            text: object - текстовая строка с информацией о поле.
             
         Возвращает:
-          Optional[int] - 1 для мужского пола, 0 для женского, None если пол не удалось определить.
+            Optional[int] - 1 для мужского пола, 0 для женского, None если пол не удалось определить.
         """
 
         t = text.lower()
@@ -35,10 +35,10 @@ class SimpleEncoder(PipelineNode):
         Извлечь возраст из текстовой строки.
         
         Аргументы: 
-          text: object - текстовая строка с информацией о возрасте.
+            text: object - текстовая строка с информацией о возрасте.
             
         Возвращает: 
-          Optional[float] - возраст в годах или None, если возраст не удалось определить.
+            Optional[float] - возраст в годах или None, если возраст не удалось определить.
         """
 
         m = re.search(r"(\d{1,3})(?:[.,]\d+)?\s*(?:лет|год|года|years?)", text.lower())
@@ -51,10 +51,10 @@ class SimpleEncoder(PipelineNode):
         Определить группу должности на основе ключевых слов в названии.
         
         Аргументы:
-          title: object - название должности.
+            title: object - название должности.
             
         Возвращает:
-          str - группа должности (dev, sys, mgr, analyst, support, marketing, engineer, other).
+            str - группа должности (dev, sys, mgr, analyst, support, marketing, engineer, other).
         """
 
         if not isinstance(title, str):
@@ -70,10 +70,10 @@ class SimpleEncoder(PipelineNode):
         Извлечь опыт работы из текстовой строки.
         
         Аргументы:
-          text : object - текстовая строка с информацией об опыте работы.
+            text : object - текстовая строка с информацией об опыте работы.
             
         Возвращает:
-          Optional[float] - опыт работы в годах (включая месяцы как десятичную часть).
+            Optional[float] - опыт работы в годах (включая месяцы как десятичную часть).
         """
         
         text_lower = text.lower()
@@ -103,7 +103,7 @@ class SimpleEncoder(PipelineNode):
         Преобразовать данные.
         
         Аргументы:
-          df : pd.DataFrame - исходный DataFrame с сырыми данными.
+            df : pd.DataFrame - исходный DataFrame с сырыми данными.
             
         Возвращает:
         pd.DataFrame - DataFrame с преобразованными и закодированными признаками.

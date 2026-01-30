@@ -11,7 +11,7 @@ class CSVLoader(PipelineNode):
         Инициализировать объект CSVLoader.
         
         Аргументы:
-          path : Path - путь к CSV файлу.
+            path : Path - путь к CSV файлу.
         """
 
         super().__init__()
@@ -22,13 +22,13 @@ class CSVLoader(PipelineNode):
         Загрузить данные из CSV файла.
         
         Аргументы:
-          frame : любое - игнорируется, требуется для совместимости с PipelineNode.
+            frame : любое - игнорируется, требуется для совместимости с PipelineNode.
             
         Возвращает:
-          pd.DataFrame - загруженные данные из CSV файла.
+            pd.DataFrame - загруженные данные из CSV файла.
             
         Исключения:
-          FileNotFoundError - если указанный файл не существует.
+            FileNotFoundError - если указанный файл не существует.
         """
 
         if not self.path.exists():

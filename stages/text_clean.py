@@ -10,10 +10,10 @@ class TextNormalizer(PipelineNode):
         Очистить текстовые данные в DataFrame.
         
         Аргументы:
-          df : pd.DataFrame - DataFrame с текстовыми данными.
+            df : pd.DataFrame - DataFrame с текстовыми данными.
             
         Возвращает:
-          pd.DataFrame - DataFrame с очищенными текстовыми данными.
+            pd.DataFrame - DataFrame с очищенными текстовыми данными.
         """
         
         def clean(val):
@@ -21,10 +21,10 @@ class TextNormalizer(PipelineNode):
             Вспомогательная функция для очистки текста.
             
             Аргументы:
-              val : str - исходная текстовая строка.
+                val : str - исходная текстовая строка.
                 
             Возвращает:
-              str - очищенная текстовая строка.
+                str - очищенная текстовая строка.
             """
             if not isinstance(val, str):
                 return val

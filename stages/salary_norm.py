@@ -12,7 +12,7 @@ class SalaryNormalizer(PipelineNode):
         Инициализирует объект SalaryNormalizer.
         
         Аргументы:
-          column : str - название столбца с данными о зарплате.
+            column : str - название столбца с данными о зарплате.
         """
 
         super().__init__()
@@ -23,10 +23,10 @@ class SalaryNormalizer(PipelineNode):
         Нормализует зарплаты, приводя их к рублевому эквиваленту.
         
         Аргументы:
-          df : pd.DataFrame - DataFrame с данными о зарплате.
+            df : pd.DataFrame - DataFrame с данными о зарплате.
             
         Возвращает:
-        pd.DataFrame - DataFrame с нормализованными зарплатами в рублях.
+            pd.DataFrame - DataFrame с нормализованными зарплатами в рублях.
         """
 
         values = df[self.column].astype(str)

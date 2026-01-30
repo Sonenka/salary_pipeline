@@ -13,7 +13,7 @@ class IQRFilter(PipelineNode):
         Инициализировать объект IQRFilter.
         
         Аргументы:
-          column : str - название столбца для обработки выбросов.
+            column : str - название столбца для обработки выбросов.
         """
 
         super().__init__()
@@ -24,10 +24,10 @@ class IQRFilter(PipelineNode):
         Обрезать выбросы в указанном столбце с использованием метода IQR.
         
         Аргументы:
-          df : pd.DataFrame - исходный DataFrame.
+            df : pd.DataFrame - исходный DataFrame.
             
         Возвращает:
-          pd.DataFrame - DataFrame с обработанными выбросами.
+            pd.DataFrame - DataFrame с обработанными выбросами.
         """
 
         q1, q3 = df[self.column].quantile([0.25, 0.75])
